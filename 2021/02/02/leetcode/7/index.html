@@ -2,7 +2,7 @@
 <html class="has-navbar-fixed-top">
 <head>
     <meta charset="utf-8">
-<title>【LeetCode 142】Linked List Cycle II - zzz的技术专栏</title>
+<title>【LeetCode 7】Reverse Integer - zzz的技术专栏</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
@@ -16,15 +16,15 @@
 
 
 
-    <meta name="description" content="题目描述Given a linked list, return the node where the cycle begins. If there is no cycle, return null. Note: Do not modify the linked list.">
+    <meta name="description" content="题目Reverse digits of an integer.Example1: x &#x3D; 123, return 321Example2: x &#x3D; -123, return -321">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【LeetCode 142】Linked List Cycle II">
-<meta property="og:url" content="http://example.com/2021/02/01/leetcode/142/index.html">
+<meta property="og:title" content="【LeetCode 7】Reverse Integer">
+<meta property="og:url" content="http://example.com/2021/02/02/leetcode/7/index.html">
 <meta property="og:site_name" content="zzz的技术专栏">
-<meta property="og:description" content="题目描述Given a linked list, return the node where the cycle begins. If there is no cycle, return null. Note: Do not modify the linked list.">
+<meta property="og:description" content="题目Reverse digits of an integer.Example1: x &#x3D; 123, return 321Example2: x &#x3D; -123, return -321">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-02-01T14:22:42.000Z">
-<meta property="article:modified_time" content="2021-02-01T14:25:16.897Z">
+<meta property="article:published_time" content="2021-02-02T00:22:14.000Z">
+<meta property="article:modified_time" content="2021-02-02T00:23:18.955Z">
 <meta property="article:author" content="ZhangZhongZheng">
 <meta property="article:tag" content="LeetCode">
 <meta name="twitter:card" content="summary">
@@ -128,13 +128,13 @@
     <article class="article content gallery" itemscope itemprop="blogPost">
     <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
         
-            【LeetCode 142】Linked List Cycle II
+            【LeetCode 7】Reverse Integer
         
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
             
-                <time datetime="2021-02-01T14:22:42.000Z" itemprop="datePublished">Feb 1 2021</time>
+                <time datetime="2021-02-02T00:22:14.000Z" itemprop="datePublished">Feb 2 2021</time>
             
         </span>
         
@@ -142,22 +142,16 @@
         <span class="column is-narrow">
             
             
-            2 minutes read (About 250 words)
+            a few seconds read (About 43 words)
         </span>
         
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <html><head></head><body><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given a linked list, return the node where the cycle begins. If there is no cycle, return null.</p>
-<p>Note: Do not modify the linked list.</p>
+        <html><head></head><body><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>Reverse digits of an integer.<br>Example1: x = 123, return 321<br>Example2: x = -123, return -321</p>
 <a id="more"></a>
 
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>证明：<br>设<br>p1与p2相遇时用时为t，<br>p1在圈内走了n1圈<br>p2在圈内走了n2圈<br>圈长为l<br>起点到成环点距离为x<br>相遇点到起点距离为z<br>成环点到相遇点距离为y</p>
-<p>则<br>2t - t = (n2 - n1) * l =&gt; t = (n2 - n1) * l</p>
-<p>t + z = x + (n1 + 1) * l<br>t = (n2 - n1) * l</p>
-<p>z + (n2 - n1) * l = x + (n1 + 1) * l</p>
-<p>x = z + (n2 - 2*n1 - 1) * l<br>所以p1在相遇点接着走，p2从起点开始走，同时同步走下次会在成环点相遇</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="hljs-comment"># class ListNode(object):</span></span><br><span class="line"><span class="hljs-comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="hljs-comment">#         self.val = x</span></span><br><span class="line"><span class="hljs-comment">#         self.next = None</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>(<span class="hljs-params"><span class="hljs-built_in">object</span></span>):</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">detectCycle</span>(<span class="hljs-params">self, head</span>):</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        :type head: ListNode</span></span><br><span class="line"><span class="hljs-string">        :rtype: ListNode</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        p1 = head</span><br><span class="line">        p2 = head</span><br><span class="line">        hasCycle = <span class="hljs-literal">False</span></span><br><span class="line">        <span class="hljs-keyword">while</span> p2 <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span>:</span><br><span class="line">            <span class="hljs-keyword">if</span> p2.<span class="hljs-built_in">next</span> == p1:</span><br><span class="line">                hasCycle = <span class="hljs-literal">True</span></span><br><span class="line">                p1 = p1.<span class="hljs-built_in">next</span></span><br><span class="line">                <span class="hljs-keyword">break</span></span><br><span class="line">            <span class="hljs-keyword">elif</span> p2.<span class="hljs-built_in">next</span> <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:</span><br><span class="line">                <span class="hljs-keyword">return</span> <span class="hljs-literal">None</span></span><br><span class="line">            p2 = p2.<span class="hljs-built_in">next</span>.<span class="hljs-built_in">next</span></span><br><span class="line">            p1 = p1.<span class="hljs-built_in">next</span></span><br><span class="line">        <span class="hljs-keyword">if</span> hasCycle:</span><br><span class="line">            p3 = head</span><br><span class="line">            <span class="hljs-keyword">while</span> p1 != p3:</span><br><span class="line">                p1 = p1.<span class="hljs-built_in">next</span></span><br><span class="line">                p3 = p3.<span class="hljs-built_in">next</span></span><br><span class="line">            <span class="hljs-keyword">return</span> p3</span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-literal">None</span></span><br></pre></td></tr></tbody></table></figure></body></html>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public <span class="hljs-built_in">int</span> reverse(<span class="hljs-built_in">int</span> x) {</span><br><span class="line">    long <span class="hljs-built_in">sum</span> = <span class="hljs-number">0</span>;</span><br><span class="line">    <span class="hljs-keyword">while</span> (x != <span class="hljs-number">0</span>) {</span><br><span class="line">        <span class="hljs-built_in">sum</span> = <span class="hljs-built_in">sum</span>*<span class="hljs-number">10</span> + x%<span class="hljs-number">10</span>;</span><br><span class="line">        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">sum</span>&gt;Integer.MAX_VALUE || <span class="hljs-built_in">sum</span>&lt;Integer.MIN_VALUE)</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">        x /= <span class="hljs-number">10</span>;</span><br><span class="line">    }</span><br><span class="line">    <span class="hljs-keyword">return</span> (<span class="hljs-built_in">int</span>)<span class="hljs-built_in">sum</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure></body></html>
     
     </div>
     
@@ -169,14 +163,12 @@
     
     
     <div class="columns is-mobile is-multiline article-nav">
-        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
-            
-            <a href="/2021/02/02/leetcode/7/">【LeetCode 7】Reverse Integer</a>
+        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-prev">
             
         </span>
         <span class="column is-12-mobile is-half-desktop  article-nav-next">
             
-            <a href="/2021/02/01/leetcode/394/">【LeetCode 394】Decode String</a>
+            <a href="/2021/02/01/leetcode/142/">【LeetCode 142】Linked List Cycle II</a>
             
         </span>
     </div>
@@ -196,7 +188,7 @@
 <div class="comments">
     <h3 class="title is-4">Comments</h3>
     
-<div id="SOHUCS" sid="2021/02/01/leetcode/142/"></div>
+<div id="SOHUCS" sid="2021/02/02/leetcode/7/"></div>
 <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
 window.changyan.api.config({
