@@ -2,7 +2,7 @@
 <html class="has-navbar-fixed-top">
 <head>
     <meta charset="utf-8">
-<title>Categories - zzz的技术专栏</title>
+<title>社区发现算法-Louvain - zzz的技术专栏</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
@@ -16,18 +16,21 @@
 
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="zzz的技术专栏">
-<meta property="og:url" content="http://example.com/categories/index.html">
+    <meta name="description" content="简介&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Louvain算法[1]是一种基于多层次优化Modularity[2]的算法，它的优点是快速、准确，被[3]认为是性能最好的社区发现算法之一。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="社区发现算法-Louvain">
+<meta property="og:url" content="http://example.com/2021/02/05/algorithm/louvain/index.html">
 <meta property="og:site_name" content="zzz的技术专栏">
+<meta property="og:description" content="简介&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Louvain算法[1]是一种基于多层次优化Modularity[2]的算法，它的优点是快速、准确，被[3]认为是性能最好的社区发现算法之一。">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/281180-991f97db21e2adaa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/281180-53e40900b4271d70.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/281180-dd94f1b77fac347e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="article:published_time" content="2021-02-04T23:50:33.000Z">
+<meta property="article:modified_time" content="2021-02-04T23:53:08.385Z">
 <meta property="article:author" content="ZhangZhongZheng">
-<meta property="article:tag" content="图算法">
-<meta property="article:tag" content="LeetCode">
-<meta property="article:tag" content="hexo">
-<meta property="article:tag" content="内推">
-<meta property="article:tag" content="字节跳动">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/281180-991f97db21e2adaa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -123,18 +126,84 @@
     </div>
 </nav>
 
-    <section class="section section-heading">
+    <section class="section">
     <div class="container">
-        <div class="content">
-            <h5><i class="far fa-folder"></i>Categories</h5>
-        </div>
-    </div>
-</section>
-<section class="section">
-    <div class="container">
-        <div class="columns is-variable is-1 is-multiline is-mobile">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            社区发现算法-Louvain
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
             
-        </div>
+                <time datetime="2021-02-04T23:50:33.000Z" itemprop="datePublished">Feb 5 2021</time>
+            
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            4 minutes read (About 601 words)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;Louvain算法[1]是一种基于多层次优化Modularity[2]的算法，它的优点是快速、准确，被[3]认为是性能最好的社区发现算法之一。</p>
+<a id="more"></a>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;Modularity函数最初被用于衡量社区发现算法结果的质量，它能够刻画发现的社区的紧密程度。那么既然能刻画社区的紧密程度，也就能够被用来当作一个优化函数，即将结点加入它的某个邻居所在的社区中，如果能够提升当前社区结构的modularity。<br></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;Modularity的定义如下：<br>&nbsp; &nbsp; &nbsp; &nbsp;<img src="http://upload-images.jianshu.io/upload_images/281180-991f97db21e2adaa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
+<p>&nbsp;&nbsp;其中，m表示网络中边的数量，A为邻接矩阵，如果ci,cj相同则$\delta(ci,cj)$＝1否则为0。<br></p>
+<p>&nbsp;&nbsp;如果当前结点所在的社区只有它自己，那么在计算将它加入到其它社区时的modularity的变化有个技巧来加速计算，Louvain的高效性也在一定程度上受益于此，它为:<br>&nbsp; <img src="http://upload-images.jianshu.io/upload_images/281180-53e40900b4271d70.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><br></p>
+<p>&nbsp; Louvain算法包括两个阶段，在步骤一它不断地遍历网络中的结点，尝试将单个结点加入能够使modularity提升最大的社区中，直到所有结点都不再变化。在步骤二，它处理第一阶段的结果，将一个个小的社区归并为一个超结点来重新构造网络，这时边的权重为两个结点内所有原始结点的边权重之和。迭代这两个步骤直至算法稳定。它的执行流程如图所示：<br>&nbsp; <img src="http://upload-images.jianshu.io/upload_images/281180-dd94f1b77fac347e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><br></p>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><p>GraphX是Spark上的一个图处理框架，它在RDD的基础之上封装出VertexRDD以及EdgeRDD，由这两个封装出的RDD便可构成图结构，详细请见官网：<a target="_blank" rel="noopener" href="https://spark.apache.org/docs/latest/graphx-programming-guide.html"></a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/zzz24512653/CommunityDetection/tree/master/algorithm/graphx/Louvain">GraphX实现</a><br><a target="_blank" rel="noopener" href="https://github.com/zzz24512653/CommunityDetection/tree/master/algorithm/graphx/Louvain/src/main/scala">Python实现参见</a></p>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>[1]. Fast unfolding of communities in large networks<br>[2]. Finding community structure in very large networks<br>[3]. Community detection algorithms: A comparative analysis</p>
+</body></html>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-prev">
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2021/02/05/algorithm/label_propagation/">社区发现算法-标签传播</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+<div class="sharebox">
+    
+<div class="sharethis-inline-share-buttons"></div>
+<script type='text/javascript' src='//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6016c380b57dae4d' async='async'></script>
+
+</div>
+
+
+
+<div class="comments">
+    <h3 class="title is-4">Comments</h3>
+    
+<div id="SOHUCS" sid="2021/02/05/algorithm/louvain/"></div>
+<script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+window.changyan.api.config({
+    appid: 'cyvhIn1Ja',
+    conf: 'prod_8b6283d95a06a191679329eb443e0d69'
+});
+</script>
+
+</div>
+
     </div>
 </section>
     <footer class="footer">

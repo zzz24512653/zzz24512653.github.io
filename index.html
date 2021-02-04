@@ -124,6 +124,81 @@
         <article class="article content gallery" itemscope itemprop="blogPost">
     <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
         
+            <a href="/2021/02/05/algorithm/louvain/" itemprop="url">社区发现算法-Louvain</a>
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            
+                <time datetime="2021-02-04T23:50:33.000Z" itemprop="datePublished">Feb 5 2021</time>
+            
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            4 minutes read (About 601 words)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;Louvain算法[1]是一种基于多层次优化Modularity[2]的算法，它的优点是快速、准确，被[3]认为是性能最好的社区发现算法之一。</p></body></html>
+        <p class="article-more-link">
+            <a href="/2021/02/05/algorithm/louvain/#more">Read More</a>
+        </p>
+    
+    </div>
+    
+    
+</article>
+
+
+
+
+    
+        <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            <a href="/2021/02/05/algorithm/label_propagation/" itemprop="url">社区发现算法-标签传播</a>
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            
+                <time datetime="2021-02-04T23:37:29.000Z" itemprop="datePublished">Feb 5 2021</time>
+            
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            2 minutes read (About 306 words)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;基本的标签传播算法(LPA)[1]的思想非常简单，就是让每个结点与它的大多数邻居在同一个社区中。具体算法流程为：初始化，每个结点携带一个唯一的标签；然后更新结点的标签，令其标签与它的大多数邻居的标签相同，若存在多个则随机选择。迭代直至每个结点的标签不再变化。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;LPA算法的优点是简单、快速接近线性时间，5次迭代就可使95%的结点标签稳定。缺点是算法结果不稳定，多次执行可能得到的结果都不同。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;针对基本的标签传播算法有时会形成过大(“monster”)的社区，[2]提出一个令标签跳跃衰减的方法。初始时给每个标签权重为1.0，在更新结点标签时，令其与它的邻居标签中权重最大的相同，并令权重损失一部分。</p>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>[1].Near linear time algorithm to detect community structures in large-scale networks<br>Towards Real-Time Community Detection in Large Networks</p>
+</body></html>
+    
+    </div>
+    
+    
+</article>
+
+
+
+
+    
+        <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
             <a href="/2021/02/02/leetcode/7/" itemprop="url">【LeetCode 7】Reverse Integer</a>
         
     </h1>
