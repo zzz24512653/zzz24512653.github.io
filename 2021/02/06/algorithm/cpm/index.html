@@ -2,7 +2,7 @@
 <html class="has-navbar-fixed-top">
 <head>
     <meta charset="utf-8">
-<title>社区发现算法-标签传播 - zzz的技术专栏</title>
+<title>社区发现算法-团渗透 - zzz的技术专栏</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
@@ -16,18 +16,20 @@
 
 
 
-    <meta name="description" content="简介&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;基本的标签传播算法(LPA)[1]的思想非常简单，就是让每个结点与它的大多数邻居在同一个社区中。具体算法流程为：初始化，每个结点携带一个唯一的标签；然后更新结点的标签，令其标签与它的大多数邻居的标签相同，若存在多个则随机选择。迭代直至每个结点的标签不再变化。 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;LPA算法的优点是简单、快速接近线性时间">
+    <meta name="description" content="简介&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;k-团渗透算法(CPM)[1]是第一个能够发现重叠社区的算法，重叠社区指的是结点可以同时属于多个社区。重叠社区在社交网络中是十分常见的，因为每个人都有着多种多样的社交关系。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="社区发现算法-标签传播">
-<meta property="og:url" content="http://example.com/2021/02/05/algorithm/label_propagation/index.html">
+<meta property="og:title" content="社区发现算法-团渗透">
+<meta property="og:url" content="http://example.com/2021/02/06/algorithm/cpm/index.html">
 <meta property="og:site_name" content="zzz的技术专栏">
-<meta property="og:description" content="简介&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;基本的标签传播算法(LPA)[1]的思想非常简单，就是让每个结点与它的大多数邻居在同一个社区中。具体算法流程为：初始化，每个结点携带一个唯一的标签；然后更新结点的标签，令其标签与它的大多数邻居的标签相同，若存在多个则随机选择。迭代直至每个结点的标签不再变化。 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;LPA算法的优点是简单、快速接近线性时间">
+<meta property="og:description" content="简介&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;k-团渗透算法(CPM)[1]是第一个能够发现重叠社区的算法，重叠社区指的是结点可以同时属于多个社区。重叠社区在社交网络中是十分常见的，因为每个人都有着多种多样的社交关系。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-02-04T23:37:29.000Z">
-<meta property="article:modified_time" content="2021-02-04T23:49:37.919Z">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/281180-e96c41ee8c6b47a1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="article:published_time" content="2021-02-06T10:26:45.000Z">
+<meta property="article:modified_time" content="2021-02-06T10:28:16.617Z">
 <meta property="article:author" content="ZhangZhongZheng">
 <meta property="article:tag" content="图算法">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/281180-e96c41ee8c6b47a1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -128,13 +130,13 @@
     <article class="article content gallery" itemscope itemprop="blogPost">
     <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
         
-            社区发现算法-标签传播
+            社区发现算法-团渗透
         
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
             
-                <time datetime="2021-02-04T23:37:29.000Z" itemprop="datePublished">Feb 5 2021</time>
+                <time datetime="2021-02-06T10:26:45.000Z" itemprop="datePublished">Feb 6 2021</time>
             
         </span>
         
@@ -142,16 +144,20 @@
         <span class="column is-narrow">
             
             
-            2 minutes read (About 306 words)
+            2 minutes read (About 357 words)
         </span>
         
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <html><head></head><body><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;基本的标签传播算法(LPA)[1]的思想非常简单，就是让每个结点与它的大多数邻居在同一个社区中。具体算法流程为：初始化，每个结点携带一个唯一的标签；然后更新结点的标签，令其标签与它的大多数邻居的标签相同，若存在多个则随机选择。迭代直至每个结点的标签不再变化。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;LPA算法的优点是简单、快速接近线性时间，5次迭代就可使95%的结点标签稳定。缺点是算法结果不稳定，多次执行可能得到的结果都不同。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;针对基本的标签传播算法有时会形成过大(“monster”)的社区，[2]提出一个令标签跳跃衰减的方法。初始时给每个标签权重为1.0，在更新结点标签时，令其与它的邻居标签中权重最大的相同，并令权重损失一部分。</p>
-<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>[1].Near linear time algorithm to detect community structures in large-scale networks<br>Towards Real-Time Community Detection in Large Networks</p>
+        <html><head></head><body><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;k-团渗透算法(CPM)[1]是第一个能够发现重叠社区的算法，重叠社区指的是结点可以同时属于多个社区。重叠社区在社交网络中是十分常见的，因为每个人都有着多种多样的社交关系。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/281180-e96c41ee8c6b47a1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
+<a id="more"></a>
+
+<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;网络中的最大团指的是，团中任意两个结点之间都有边连接，并且它不被其他的团所包含。CPM算法的想法非常简单，首先它找出网络中所有大小至少为k的最大团。然后构建一个团图，每个最大团都是团图中的一个结点，如果两个团c1与c2共享min(c1,c2)-1个邻居的话，它们在新图中的结点之间就存在边。最后团图中的每个连通单元就是一个结点的社区，而它可能是重叠的。<br><a target="_blank" rel="noopener" href="https://github.com/zzz24512653/CommunityDetection/blob/master/algorithm/CPM.py">代码参见</a></p>
+<h2 id="并行化"><a href="#并行化" class="headerlink" title="并行化"></a>并行化</h2><p>挖掘最大团的过程可以改造为map reduce格式的，详细过程请见[3]</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/zzz24512653/CommunityDetection/tree/master/algorithm/mapred/CPM">代码参见</a></p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>1: Uncovering the overlapping community structure of complex networks in nature and society<br>2: The worst-case time complexity for generating all maximal cliques<br>and computational experiments<br>3: Efficient Dense Structure Mining using MapReduce</p>
 </body></html>
     
     </div>
@@ -164,14 +170,12 @@
     
     
     <div class="columns is-mobile is-multiline article-nav">
-        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
-            
-            <a href="/2021/02/05/algorithm/louvain/">社区发现算法-Louvain</a>
+        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-prev">
             
         </span>
         <span class="column is-12-mobile is-half-desktop  article-nav-next">
             
-            <a href="/2021/02/02/leetcode/7/">【LeetCode 7】Reverse Integer</a>
+            <a href="/2021/02/05/job/bytedance/3/">【内推】字节跳动-数据平台内推</a>
             
         </span>
     </div>
@@ -191,7 +195,7 @@
 <div class="comments">
     <h3 class="title is-4">Comments</h3>
     
-<div id="SOHUCS" sid="2021/02/05/algorithm/label_propagation/"></div>
+<div id="SOHUCS" sid="2021/02/06/algorithm/cpm/"></div>
 <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
 window.changyan.api.config({
