@@ -23,13 +23,13 @@
 <meta property="og:site_name" content="zzz的技术专栏">
 <meta property="og:description" content="简介&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;k-团渗透算法(CPM)[1]是第一个能够发现重叠社区的算法，重叠社区指的是结点可以同时属于多个社区。重叠社区在社交网络中是十分常见的，因为每个人都有着多种多样的社交关系。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/281180-e96c41ee8c6b47a1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://blog-1257157979.cos.ap-nanjing.myqcloud.com/algorithm/cpm.png">
 <meta property="article:published_time" content="2021-02-06T10:26:45.000Z">
-<meta property="article:modified_time" content="2021-02-06T10:28:16.617Z">
+<meta property="article:modified_time" content="2021-02-07T22:42:55.761Z">
 <meta property="article:author" content="ZhangZhongZheng">
 <meta property="article:tag" content="图算法">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/281180-e96c41ee8c6b47a1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:image" content="https://blog-1257157979.cos.ap-nanjing.myqcloud.com/algorithm/cpm.png">
 
 
 
@@ -144,14 +144,14 @@
         <span class="column is-narrow">
             
             
-            2 minutes read (About 357 words)
+            2 minutes read (About 347 words)
         </span>
         
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
         <html><head></head><body><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;k-团渗透算法(CPM)[1]是第一个能够发现重叠社区的算法，重叠社区指的是结点可以同时属于多个社区。重叠社区在社交网络中是十分常见的，因为每个人都有着多种多样的社交关系。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/281180-e96c41ee8c6b47a1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
+<p><img src="https://blog-1257157979.cos.ap-nanjing.myqcloud.com/algorithm/cpm.png"></p>
 <a id="more"></a>
 
 <h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;网络中的最大团指的是，团中任意两个结点之间都有边连接，并且它不被其他的团所包含。CPM算法的想法非常简单，首先它找出网络中所有大小至少为k的最大团。然后构建一个团图，每个最大团都是团图中的一个结点，如果两个团c1与c2共享min(c1,c2)-1个邻居的话，它们在新图中的结点之间就存在边。最后团图中的每个连通单元就是一个结点的社区，而它可能是重叠的。<br><a target="_blank" rel="noopener" href="https://github.com/zzz24512653/CommunityDetection/blob/master/algorithm/CPM.py">代码参见</a></p>
